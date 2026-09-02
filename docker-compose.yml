@@ -1,0 +1,68 @@
+services:
+
+  db:
+    image: mysql:8.0
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    volumes:
+      - db_data:/var/lib/mysql
+
+    networks:
+      - app-network
+
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+    restart: unless-stopped
+
+
+  backend:
+    build:
+      context: ./back-end
+
+    environment:
+      DB_HOST: db
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_PASSWORD}
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    networks:
+      - app-network
+
+    restart: unless-stopped
+
+
+  frontend:
+    build:
+      context: ./front-end
+
+    ports:
+      - "8080:80"
+
+    depends_on:
+      - backend
+
+    networks:
+      - app-network
+
+    restart: unless-stopped
+
+
+networks:
+  app-network:
+    driver: bridge
+
+
+volumes:
+  db_data: {}
