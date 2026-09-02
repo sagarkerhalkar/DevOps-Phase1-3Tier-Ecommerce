@@ -40,7 +40,7 @@ const LogIn = () => {
     const connectAcc = async (email, password) => { // Log in function
         try {
             setSpinnerState(true);
-            const res = await axios.post('http://localhost:3001/session', 
+            const res = await axios.post('/api/session', 
             {email: email, password: password});
             setSpinnerState(false);
 

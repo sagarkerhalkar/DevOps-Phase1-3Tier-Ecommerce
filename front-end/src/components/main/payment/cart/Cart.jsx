@@ -16,7 +16,7 @@ const Cart = () => {
     useEffect(() => { // Fetch cart
         (async () => {
             try {
-                const res = await axios.post('http://localhost:3001/cart',
+                const res = await axios.post('/api/cart',
                 {token: localStorage.getItem('token')});
 
                 const totalPrice = () => {

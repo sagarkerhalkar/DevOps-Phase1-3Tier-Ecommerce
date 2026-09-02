@@ -13,7 +13,7 @@ const ShoppingList = () => {
 
     const incrementProductCart = async (productId, request) => { // Change product amount
         try {
-            await axios.put('http://localhost:3001/productCart', 
+            await axios.put('/api/productCart', 
             {shoppingCartId: openCart, productId: productId, request: request});
 
             dispatch({type: 'SET_REFETCH_CART', refetchCart: Math.random() * 2 });
@@ -24,7 +24,7 @@ const ShoppingList = () => {
 
     const removeProduct = async (productId) => { // Remove single product from cart
         try {
-            await axios.delete('http://localhost:3001/productCart', 
+            await axios.delete('/api/productCart', 
             {data: {shoppingCartId: openCart, productId: productId, request: 'one'}});
 
             dispatch({type: 'SET_REFETCH_CART', refetchCart: Math.random() * 2 });

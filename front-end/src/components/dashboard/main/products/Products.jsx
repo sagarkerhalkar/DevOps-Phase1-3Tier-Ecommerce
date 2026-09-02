@@ -17,7 +17,7 @@ const Products = () => {
     useEffect(() => { // Fetch first category dynamically
         (async () => {
             try {
-                const res = await axios.get('http://localhost:3001/category');
+                const res = await axios.get('/api/category');
 
                 setCategoryId(res.data.category.id);
             } catch (err) {
@@ -29,7 +29,7 @@ const Products = () => {
     useEffect(() => { // Fetch category dynamically
         (async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/products/${location.id ? location.id : categoryId}`);
+                const res = await axios.get(`/api/products/${location.id ? location.id : categoryId}`);
 
                 const found = res.data.data.find (firstProduct => firstProduct);
                 if(found) {

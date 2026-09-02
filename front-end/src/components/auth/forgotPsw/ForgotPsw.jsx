@@ -23,7 +23,7 @@ const ForgotPsw = () => {
     const resetPass = async (email) => { // Reset psw
         try {
             setSpinnerState(true);
-            await axios.put('http://localhost:3001/session', {email: email});
+            await axios.put('/api/session', {email: email});
             setSpinnerState(false);
             
             setEmailSent(true);

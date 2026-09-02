@@ -18,7 +18,7 @@ const SideBar = () => {
 
     const clearCart = async () => { // Remove all cart products
         try {
-            await axios.delete('http://localhost:3001/productCart', 
+            await axios.delete('/api/productCart', 
             {data: {shoppingCartId: openCart, request: 'all'}});
 
             dispatch({type: 'SET_REFETCH_CART', refetchCart: Math.random() * 2});

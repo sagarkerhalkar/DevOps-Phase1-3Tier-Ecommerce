@@ -135,7 +135,7 @@ const AddProduct = () => {
     const addNewProduct = async (productName, category, price, img) => { // Fetch new product
         try {
             setSpinnerState(true);
-            const res = await axios.post('http://localhost:3001/product', 
+            const res = await axios.post('/api/product', 
             {productName: productName, category: category, price: price, img: img});
             setSpinnerState(false);
             
@@ -156,7 +156,7 @@ const AddProduct = () => {
 
     const createCategory = async (productName, newCategory, price, img) => { // Fetch new category
         try {
-            const res = await axios.post('http://localhost:3001/category', 
+            const res = await axios.post('/api/category', 
             {newCategory: newCategory});
             setSpinnerState(false);
 

@@ -22,7 +22,7 @@ const Products = () => {
     useEffect(() => { // Fetch first category dynamically
         (async () => {
             try {
-                const res = await axios.get('http://localhost:3001/category');
+                const res = await axios.get('/api/category');
 
                 setCategoryId(res.data.category.id);
             } catch (err) {
@@ -34,7 +34,7 @@ const Products = () => {
     useEffect(() => { // Fetch category dynamically
         (async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/products/${location.id ? location.id : categoryId}`);
+                const res = await axios.get(`/api/products/${location.id ? location.id : categoryId}`);
 
                 const found = res.data.data.find (firstProduct => firstProduct);
                 if(found) {
@@ -64,7 +64,7 @@ const Products = () => {
 
     const selectedProductHandler = async (obj) => { // Selected product
         try {
-            await axios.post('http://localhost:3001/productCart', obj);
+            await axios.post('/api/productCart', obj);
 
             dispatch({type: 'SET_REFETCH_CART', refetchCart: Math.random() * 2 });
         } catch (err) {
@@ -74,7 +74,7 @@ const Products = () => {
 
     const incrementProductCart = async (productId, request) => { // Change product amount
         try {
-            await axios.put('http://localhost:3001/productCart', 
+            await axios.put('/api/productCart', 
             {shoppingCartId: openCart, productId: productId, request: request});
 
             dispatch({type: 'SET_REFETCH_CART', refetchCart: Math.random() * 2 });

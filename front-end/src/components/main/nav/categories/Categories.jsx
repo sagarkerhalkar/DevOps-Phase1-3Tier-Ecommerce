@@ -19,7 +19,7 @@ const Categories = () => {
     useEffect(() => { // Fetch all categories
         (async () => {
             try {
-                const res = await axios.get('http://localhost:3001/categories');
+                const res = await axios.get('/api/categories');
 
                 const found = res.data.data.find(e => e);
                 const category = found.name.replaceAll(' ', '-').toLowerCase();

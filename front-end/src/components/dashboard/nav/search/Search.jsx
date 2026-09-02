@@ -18,7 +18,7 @@ const Search = () => {
 
     const searchHandler = async (productName) => { // Fetch product by searched name
         try {
-            const res = await axios.post('http://localhost:3001/stock', 
+            const res = await axios.post('/api/stock', 
             {productName: productName});
             
             if (Array.isArray(res.data.data) && res.data.data.length > 0) {

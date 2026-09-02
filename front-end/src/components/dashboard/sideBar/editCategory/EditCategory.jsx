@@ -34,7 +34,7 @@ const EditCategory = () => {
     const editCategory = async (currentCategoryName, newCategoryName) => { // Fetch the updated category
         try {
             setSpinnerState(true);
-            const res = await axios.put('http://localhost:3001/category', 
+            const res = await axios.put('/api/category', 
             {currentCategoryName: currentCategoryName, newCategoryName: newCategoryName});
             setSpinnerState(false);
             

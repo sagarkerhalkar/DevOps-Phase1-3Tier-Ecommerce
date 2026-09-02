@@ -96,7 +96,7 @@ const EditProduct = () => {
     const editProduct = async () => { // Fetch product update
         try {
             setSpinnerState(true);
-            const res = await axios.put('http://localhost:3001/product', obj);
+            const res = await axios.put('/api/product', obj);
 
             setSpinnerState(false);
 

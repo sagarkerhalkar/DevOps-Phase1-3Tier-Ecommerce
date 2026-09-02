@@ -81,7 +81,7 @@ const SignUp = () => {
     const verifyData = async (id, email, password) => { // Verify new account function
         try {
             setSpinnerState(true);
-            const res = await axios.post('http://localhost:3001/users', 
+            const res = await axios.post('/api/users', 
             {id: id, email: email});
             setSpinnerState(false);
 
@@ -101,7 +101,7 @@ const SignUp = () => {
     const createAccount = async (fname, lname, city, street) => { // Create new account function
         try {
             setSpinnerState(true);
-            const res = await axios.post('http://localhost:3001/user', 
+            const res = await axios.post('/api/user', 
             {...obj, fname: fname, lname: lname, city: city, street: street});
             setSpinnerState(false);
             
